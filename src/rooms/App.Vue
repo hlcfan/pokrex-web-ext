@@ -59,8 +59,8 @@
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { SERVER_HOST } from '../utilities.js'
 
-const POKREX_HOST="https://pokrex.com"
 export default {
   name: "App",
   data: ( ) => {
@@ -72,7 +72,7 @@ export default {
   },
   mounted () {
     axios.request({
-      baseURL: `${POKREX_HOST}/api/v1`,
+      baseURL: `${SERVER_HOST}/api/v1`,
       url: "/rooms.json",
       timeout: 5000
     }).then((response) => {

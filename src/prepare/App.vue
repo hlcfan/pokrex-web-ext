@@ -120,10 +120,7 @@ import axios from 'axios'
 import Tagify from '@yaireo/tagify'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import { GetBrowserStorage } from '../storage.js'
-
-/* const POKREX_HOST="https://pokrex.com" */
-const POKREX_HOST="http://dev.local:3000"
+import { GetBrowserStorage, SERVER_HOST } from '../utilities.js'
 
 export default {
   name: "App",
@@ -163,7 +160,7 @@ export default {
       })
 
       axios.request({
-        url: `${POKREX_HOST}/rooms.json`,
+        url: `${SERVER_HOST}/rooms.json`,
         timeout: 5000,
         method: "post",
         headers: { 'content-type': 'application/json' },
@@ -205,7 +202,7 @@ export default {
     })
 
     axios.request({
-      url: `${POKREX_HOST}/api/v1/schemes.json`,
+      url: `${SERVER_HOST}/api/v1/schemes.json`,
       timeout: 5000,
       method: "get",
       headers: { 'content-type': 'application/json' },
@@ -245,7 +242,7 @@ export default {
       controller && controller.abort();
       controller = new AbortController(); 
 
-      fetch(`${POKREX_HOST}/users/autocomplete.json?term=` + value, {signal:controller.signal})
+      fetch(`${SERVER_HOST}/users/autocomplete.json?term=` + value, {signal:controller.signal})
         .then(RES => RES.json())
         .then((whitelist) => {
           tagify.settings.whitelist = whitelist;

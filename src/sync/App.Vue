@@ -87,10 +87,7 @@
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import { GetBrowserStorage } from '../storage.js'
-
-/* const POKREX_HOST="https://pokrex.com" */
-const POKREX_HOST="http://dev.local:3000"
+import { GetBrowserStorage, SERVER_HOST } from '../utilities.js'
 
 export default {
   name: "App",
@@ -188,7 +185,7 @@ export default {
     const roomId= location.hash.slice(1)
     if(roomId.length) {
       axios.request({
-        baseURL: `${POKREX_HOST}/api/v1`,
+        baseURL: `${SERVER_HOST}/api/v1`,
         url: `/rooms/${roomId}`,
         timeout: 5000
       }).then((response) => {

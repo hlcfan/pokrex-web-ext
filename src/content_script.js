@@ -1,4 +1,5 @@
-import { GetBrowserStorage } from './storage.js'
+import { GetBrowserStorage } from './utilities.js'
+
 setTimeout(() => {
   let storage = GetBrowserStorage()
   // Show add button on issue list page
