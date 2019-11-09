@@ -12,7 +12,6 @@ const config = {
   entry: {
     'background': './background.js',
     'popup/popup': './popup/popup.js',
-    'options/options': './options/options.js',
     'prepare/prepare': './prepare/prepare.js',
     'rooms/rooms': './rooms/rooms.js',
     'sync/sync': './sync/index.js',
@@ -81,7 +80,6 @@ const config = {
     new CopyWebpackPlugin([
       { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
       { from: 'popup/popup.html', to: 'popup/popup.html', transform: transformHtml },
-      { from: 'options/options.html', to: 'options/options.html', transform: transformHtml },
       { from: 'prepare/prepare.html', to: 'prepare.html', transform: transformHtml },
       { from: 'rooms/rooms.html', to: 'rooms.html', transform: transformHtml },
       { from: 'sync/index.html', to: 'sync.html', transform: transformHtml },
