@@ -1,7 +1,7 @@
 {
   "name": "pokrex-browser-ext",
-  "version": "1.0.0",
-  "description": "A Vue.js web extension",
+  "version": "1.2.4",
+  "description": "Integrates with both JIRA cloud and JIRA server, allows to import tickets into Pokrex and sync results back to JIRA.",
   "author": "Alex S <hlcfan.yan@gmail.com>",
   "license": "GPL-2.0",
   "scripts": {
@@ -19,7 +19,6 @@
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.4",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.1",
     "webextension-polyfill": "^0.3.1"
   },
   "devDependencies": {
