@@ -118,8 +118,7 @@
 <script>
 import axios from 'axios'
 import Tagify from '@yaireo/tagify'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap/scss/bootstrap.scss'
 import { GetBrowserStorage, SERVER_HOST } from '../utilities.js'
 
 export default {

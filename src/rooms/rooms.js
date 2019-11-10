@@ -1,14 +1,9 @@
-global.browser = require('webextension-polyfill')
-
 import Vue from 'vue'
 import App from './App'
-import BootstrapVue from 'bootstrap-vue'
 
-Vue.use(BootstrapVue)
+// Vue.config.devtools = true
 
-Vue.config.devtools = true
-
-var aa = new Vue({
+new Vue({
   el: '#rooms',
   render: h => h(App),
 })

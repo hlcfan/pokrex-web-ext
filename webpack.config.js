@@ -23,6 +23,9 @@ const config = {
     filename: '[name].js',
   },
   resolve: {
+    alias: {
+      vue$: "vue/dist/vue.runtime.js",
+    },
     extensions: ['.js', '.vue'],
   },
   module: {
