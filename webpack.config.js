@@ -1,10 +1,12 @@
 const webpack = require('webpack');
 const ejs = require('ejs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtensionReloader = require('webpack-extension-reloader');
 const { VueLoaderPlugin } = require('vue-loader');
 const { version } = require('./package.json');
+const glob = require('glob')
 
 const config = {
   mode: process.env.NODE_ENV,
@@ -78,6 +80,9 @@ const config = {
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
+    }),
+    new PurgecssPlugin({
+      paths: glob.sync(`${__dirname}/src/**/*`, { nodir: true })
     }),
     new CopyWebpackPlugin([
       { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
