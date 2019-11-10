@@ -82,7 +82,8 @@ const config = {
       filename: '[name].css',
     }),
     new PurgecssPlugin({
-      paths: glob.sync(`${__dirname}/src/**/*`, { nodir: true })
+      paths: glob.sync(`${__dirname}/src/**/*`, { nodir: true }),
+      whitelistPatterns: [/tagify/]
     }),
     new CopyWebpackPlugin([
       { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
