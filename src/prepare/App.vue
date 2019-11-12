@@ -180,7 +180,7 @@ export default {
         storage.remove("prepItems", () => {
           console.log("stashed tickets removed")
         })
-        location.href = response.data.url
+        location.href = encodeURI(response.data.url)
       })
       .catch(function (error) {
         console.error(error);
