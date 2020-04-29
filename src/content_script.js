@@ -10,7 +10,8 @@ setTimeout(() => {
 
     if (typeof(tooltipBar) !== 'undefined' && tooltipBar !== null) {
       let buttonOnIssuePage = document.createElement("button")
-      let issueLink = location.origin + location.pathname
+      let issueHref = document.querySelector("#key-val,.issue-link").getAttribute("href")
+      let issueLink = location.origin + issueHref
       buttonOnIssuePage.className = "pokrex-add-to-btn-issue-page"
       storage.get("prepItems", (result) => {
         let prepItems = result["prepItems"] || []
@@ -33,7 +34,7 @@ setTimeout(() => {
             buttonOnIssuePage.classList.remove("saved")
           }
           storage.set({prepItems: prepItems}, () => {
-            console.dir("list", prepItems)
+            console.dir("list: ", prepItems)
           });
         })
       })

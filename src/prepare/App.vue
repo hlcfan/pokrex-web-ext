@@ -138,8 +138,8 @@ export default {
   },
   methods: {
     trimIssueLink(link) {
-      const issueIdRegex = /(http|https):\/\/.*\/browse\/(\w+-\d+)/i
-      return issueIdRegex.exec(link)[2]
+      const issueIdRegex = /(http|https):\/\/.*\/(browse|issues)\/(\w+-\d+)/i
+      return issueIdRegex.exec(link)[3]
     },
     removeFromPrep: function(link) {
       this.groom_items = this.groom_items.filter((item, index, arr) => {
