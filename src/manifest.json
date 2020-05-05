@@ -1,6 +1,6 @@
 {
   "name": "Pokrex JIRA Assistant",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Integrates with both JIRA cloud and JIRA server, allows to import tickets into Pokrex and sync results back to JIRA.",
   "manifest_version": 2,
   "background": {
