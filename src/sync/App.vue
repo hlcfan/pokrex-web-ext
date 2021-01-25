@@ -135,12 +135,18 @@ export default {
       for(let [link, story] of Object.entries(this.tickets)) {
         if(this.isValidUrl(link)) {
           const ticketPoint = isNaN(story.point) ? story.point : parseFloat(story.point)
+          const jiraHost = this.jiraHostFromUrl(link)
           this.setSyncStatus(link, "In progress")
+
           axios.request({
-            url: `${this.jiraHostFromUrl(link)}/rest/api/2/field`,
+            url: `${jiraHost}/rest/api/2/field`,
             timeout: 5000,
             method: "get",
-            headers: { 'content-type': 'application/json' },
+            headers: {
+              "Content-Type": "application/json",
+              "User-Agent": null,
+              "Origin": jiraHost
+            },
             responseType: 'json',
             auth: auth
           }).then((response) => {
@@ -154,7 +160,11 @@ export default {
               url: this.issueLinkToApiUrl(link),
               method: "put",
               timeout: 5000,
-              headers: { 'content-type': 'application/json'  },
+              headers: {
+                "Content-Type": "application/json",
+                "User-Agent": null,
+                "Origin": jiraHost
+              },
               responseType: 'json',
               auth: auth,
               data: {
