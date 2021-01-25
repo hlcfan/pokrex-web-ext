@@ -143,9 +143,7 @@ export default {
             timeout: 5000,
             method: "get",
             headers: {
-              "Content-Type": "application/json",
-              "User-Agent": null,
-              "Origin": jiraHost
+              "Content-Type": "application/json"
             },
             responseType: 'json',
             auth: auth
@@ -161,9 +159,7 @@ export default {
               method: "put",
               timeout: 5000,
               headers: {
-                "Content-Type": "application/json",
-                "User-Agent": null,
-                "Origin": jiraHost
+                "Content-Type": "application/json"
               },
               responseType: 'json',
               auth: auth,
