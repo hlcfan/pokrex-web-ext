@@ -170,7 +170,15 @@ export default {
               console.log(`Updated: ${link}`)
               this.setSyncStatus(link, "✅")
             }).catch((error) => {
-              console.log(error)
+              const {
+                data: {errorMessages, errors},
+                status,
+                statusText,
+              } = error.response;
+
+              this.setSyncStatus(link, `⛔️ ${JSON.stringify(errors)}`)
+              console.log("==Errors:", errors)
+              console.log("==ErrorsMessages:", errorMessages)
             })
           }).catch((error) => {
             console.log(error)
