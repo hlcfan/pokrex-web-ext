@@ -87,6 +87,7 @@
 import axios from 'axios'
 import 'bootstrap/scss/bootstrap.scss'
 import { GetBrowserStorage, SERVER_HOST } from '../utilities.js'
+import * as Sentry from "@sentry/vue";
 
 export default {
   name: "App",
@@ -173,10 +174,11 @@ export default {
               const {
                 data: {errorMessages, errors},
                 status,
-                statusText,
               } = error.response;
 
               this.setSyncStatus(link, `⛔️ ${JSON.stringify(errors)}`)
+              Sentry.captureMessage(JSON.stringify(errors))
+              console.log("==Status:", status)
               console.log("==Errors:", errors)
               console.log("==ErrorsMessages:", errorMessages)
             })
