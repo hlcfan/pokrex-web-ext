@@ -28,5 +28,6 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     return {requestHeaders: details.requestHeaders};
   },
   {urls: ["<all_urls>"]},
-  ["blocking", "requestHeaders", "extraHeaders"]
+  ["blocking", "requestHeaders"]
 );
+
