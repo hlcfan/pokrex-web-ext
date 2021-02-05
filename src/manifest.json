@@ -7,7 +7,7 @@
     "scripts": [
       "background.js"
     ],
-    "persistent": true
+    "persistent": false
   },
   "browser_action": {
     "default_icon": "icons/icon.png",
@@ -30,7 +30,7 @@
     }
   ],
   "permissions": [
-    "background", "webRequest", "webRequestBlocking", "activeTab", "tabs", "storage", "https://pokrex.com/*", "<all_urls>"
+    "activeTab", "tabs", "storage", "https://pokrex.com/*", "<all_urls>"
   ],
   "content_security_policy": "script-src 'self'; object-src 'self'"
 }
