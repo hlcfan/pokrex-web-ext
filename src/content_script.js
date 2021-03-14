@@ -3,49 +3,75 @@ import { GetBrowserStorage } from './utilities.js'
 setTimeout(() => {
   let storage = GetBrowserStorage()
   // Show add button on issue list page
-  let jiraPage = document.getElementById("jira")
+  let jiraPage = document.querySelector("body#jira")
   if (typeof(jiraPage) !== 'undefined' && jiraPage !== null) {
-    let issueSearchItems = document.querySelectorAll(".issuerow .issuekey")
-    let tooltipBar = document.querySelector(".aui-toolbar2-primary, .toolbar-split-left")
+    let barFragment = document.createDocumentFragment()
 
-    if (typeof(tooltipBar) !== 'undefined' && tooltipBar !== null) {
-      let buttonOnIssuePage = document.createElement("button")
-      let issueHref = document.querySelector("#key-val,.issue-link").getAttribute("href")
-      let issueLink = location.origin + issueHref
-      buttonOnIssuePage.className = "pokrex-add-to-btn-issue-page"
+    let bar = document.createElement("div")
+    bar.id = "pokrex-jira-assistant"
+
+    let addTicketButton = document.createElement("button")
+    let issueLink = toTicketLink(document.location.href)
+    addTicketButton.className = "pokrex-add-to-btn-issue-page"
+    bar.appendChild(addTicketButton)
+
+    let openExtensionButton = document.createElement("button")
+    openExtensionButton.className = "pokrex-open-extension-btn"
+    openExtensionButton.addEventListener("click", function(e) {
+      chrome.runtime.sendMessage({message: "openExtension"}, () => {
+      })
+    })
+    bar.appendChild(openExtensionButton)
+
+    barFragment.appendChild(bar)
+
+    storage.get("prepItems", (result) => {
+      let prepItems = result["prepItems"] || []
+      if(prepItems.find(item => item.link == issueLink)) {
+        addTicketButton.classList.add("saved")
+      }
+    })
+
+    addTicketButton.addEventListener("click", function(e) {
+      e.preventDefault()
+      e.stopPropagation()
+      let issueTitle = document.title
+      let issueTitleNode = document.querySelector(`[data-test-id="issue.views.issue-base.foundation.summary.heading"]`)
+      if (typeof issueTitleNode  !== "undefined" || issueTitleNode !== null) {
+        issueTitle = issueTitleNode.textContent
+      }
+
       storage.get("prepItems", (result) => {
-        let prepItems = result["prepItems"] || []
-        if(prepItems.find(item => item.link == issueLink)) {
-          buttonOnIssuePage.classList.add("saved")
+        console.log("===Result", result)
+        let prepItems = ( result && result["prepItems"] ) || []
+        if(!prepItems.find(item => item.link == issueLink)) {
+          prepItems.push({link: issueLink, desc: issueTitle})
+          addTicketButton.classList.add("saved")
+        } else {
+          prepItems = prepItems.filter(item => item.link !== issueLink)
+          addTicketButton.classList.remove("saved")
         }
+        storage.set({prepItems: prepItems}, () => {
+          console.dir("list: ", prepItems)
+        });
       })
-      buttonOnIssuePage.addEventListener("click", function(e) {
-        e.preventDefault()
-        e.stopPropagation()
-        let issueId = document.querySelector("#key-val,.issue-link").getAttribute("data-issue-key")
-        let issueTitle = document.querySelector("#summary-val").innerText
-        storage.get("prepItems", (result) => {
-          let prepItems = ( result && result["prepItems"] ) || []
-          if(!prepItems.find(item => item.link == issueLink)) {
-            prepItems.push({link: issueLink, desc: issueTitle})
-            buttonOnIssuePage.classList.add("saved")
-          } else {
-            prepItems = prepItems.filter(item => item.link !== issueLink)
-            buttonOnIssuePage.classList.remove("saved")
-          }
-          storage.set({prepItems: prepItems}, () => {
-            console.dir("list: ", prepItems)
-          });
-        })
-      })
-      tooltipBar.appendChild(buttonOnIssuePage)
-    }
+    })
+
+    jiraPage.appendChild(barFragment)
   }
 
   function openExtensionWithRoomId(roomId) {
     let slug = roomId || location.pathname.slice(7)
     chrome.runtime.sendMessage({message: "synkLinkClicked", roomId: slug}, () => {
     })
+  }
+
+  function toTicketLink(issueLink) {
+    // http://localhost:8080/browse/POK-4 => http://localhost:8080/rest/api/2/issue/POK-1
+    const anchorTag = document.createElement('a')
+    anchorTag.href = issueLink
+    const matches = /\/browse\/(.*)/.exec(anchorTag.pathname)
+    return matches && `${anchorTag.origin}/browse/${matches[1]}`
   }
 
   // Listen to "Sync" on click event from room page

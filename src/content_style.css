@@ -1,31 +1,28 @@
-.pokrex-add-btn-board {
-  right: 240px;
-  top: 5px;
-  z-index: 3;
-  border: 1px solid #5bc0de;
-  border-radius: 5px;
-  padding: 5px 10px;
-  background: #5bc0de;
-  color: #fff;
-  cursor: pointer;
+#pokrex-jira-assistant {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
 }
 
-.pokrex-add-to-btn-issue-page {
-  z-index: 3;
+.pokrex-add-to-btn-issue-page, .pokrex-open-extension-btn {
   border: 1px solid #5bc0de;
-  border-radius: 5px;
+  border-radius: 0;
   padding: 5px 10px;
   background: #5bc0de;
   color: #fff;
   cursor: pointer;
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 15px;
   transition: all 0.1s ease-in;
   padding-top: 2px;
   padding-bottom: 3px;
+  width: 165px;
+  height: 40px;
 }
 
-.pokrex-add-to-btn-issue-page:hover {
+.pokrex-add-to-btn-issue-page:hover, .pokrex-open-extension-btn:hover {
   outline: none;
   color: #fff;
   background-color: #31b0d5;
@@ -33,14 +30,18 @@
 }
 
 .pokrex-add-to-btn-issue-page:active,
-.pokrex-add-to-btn-issue-page:focus {
+.pokrex-add-to-btn-issue-page:focus,
+.pokrex-open-extension-btn:active,
+.pokrex-open-extension-btn:focus {
   outline: none;
 }
 
 .pokrex-add-to-btn-issue-page:before {
   content: "💾";
 }
+
 .pokrex-add-to-btn-issue-page:after {
+  padding-left: 10px;
   content: "Add to Pokrex";
 }
 
@@ -60,6 +61,7 @@
   content: "✂️";
 }
 .pokrex-add-to-btn-issue-page.saved:hover:after {
+  padding-left: 10px;
   content: "Remove ticket";
 }
 
@@ -68,6 +70,7 @@
 }
 
 .pokrex-add-to-btn-issue-page.saved:after {
+  padding-left: 10px;
   content: "Ticket added";
 }
 
@@ -75,4 +78,11 @@
   margin-top: 0;
 }
 
+.pokrex-open-extension-btn:before {
+  content: "🚀";
+}
 
+.pokrex-open-extension-btn:after {
+  padding-left: 10px;
+  content: "Open extension";
+}

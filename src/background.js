@@ -14,5 +14,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     chrome.tabs.create({
       url: chrome.extension.getURL(`sync.html#${request.roomId}`)
     })
+  } else if(request.message === "openExtension") {
+    chrome.tabs.create({
+      url: chrome.extension.getURL("prepare.html")
+    })
   }
 });
