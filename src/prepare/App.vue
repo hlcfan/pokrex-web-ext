@@ -177,9 +177,11 @@ export default {
       })
       .then(response => {
         const storage = GetBrowserStorage()
-        storage.remove("prepItems", () => {
-          console.log("stashed tickets removed")
-        })
+        if (storage) {
+          storage.remove("prepItems", () => {
+            console.log("stashed tickets removed")
+          })
+        }
         location.href = encodeURI(response.data.url)
       })
       .catch(function (error) {

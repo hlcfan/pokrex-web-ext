@@ -58,6 +58,8 @@ setTimeout(() => {
         }
       })
 
+      jiraPage.appendChild(barFragment)
+
       addTicketButton.addEventListener("click", function(e) {
         e.preventDefault()
         e.stopPropagation()
@@ -81,8 +83,6 @@ setTimeout(() => {
           });
         })
       })
-
-      jiraPage.appendChild(barFragment)
     }
 
     function openExtensionWithRoomId(roomId) {
