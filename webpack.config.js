@@ -34,7 +34,7 @@ const config = {
     rules: [
       {
         test: /\.vue$/,
-        loaders: 'vue-loader',
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
@@ -43,7 +43,7 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: ['vue-style-loader', MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.scss$/,
@@ -85,26 +85,28 @@ const config = {
       paths: glob.sync(`${__dirname}/src/**/*`, { nodir: true }),
       whitelistPatterns: [/tagify/]
     }),
-    new CopyWebpackPlugin([
-      { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
-      { from: 'prepare/prepare.html', to: 'prepare.html', transform: transformHtml },
-      { from: 'rooms/rooms.html', to: 'rooms.html', transform: transformHtml },
-      { from: 'sync/index.html', to: 'sync.html', transform: transformHtml },
-      {
-        from: 'manifest.json',
-        to: 'manifest.json',
-        transform: (content) => {
-          const jsonContent = JSON.parse(content);
-          jsonContent.version = version;
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'icons', to: 'icons', globOptions: {ignore: ['icon.xcf']} },
+        { from: 'prepare/prepare.html', to: 'prepare.html', transform: transformHtml },
+        { from: 'rooms/rooms.html', to: 'rooms.html', transform: transformHtml },
+        { from: 'sync/index.html', to: 'sync.html', transform: transformHtml },
+        {
+          from: 'manifest.json',
+          to: 'manifest.json',
+          transform: (content) => {
+            const jsonContent = JSON.parse(content);
+            jsonContent.version = version;
 
-          if (config.mode === 'development') {
-            jsonContent['content_security_policy'] = "script-src 'self' 'unsafe-eval'; object-src 'self'";
-          }
+            if (config.mode === 'development') {
+              jsonContent['content_security_policy'] = "script-src 'self' 'unsafe-eval'; object-src 'self'";
+            }
 
-          return JSON.stringify(jsonContent, null, 2);
+            return JSON.stringify(jsonContent, null, 2);
+          },
         },
-      },
-    ]),
+      ]
+    }),
   ],
 };
 
