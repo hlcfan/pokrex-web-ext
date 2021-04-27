@@ -119,6 +119,8 @@
 import axios from 'axios'
 import Tagify from '@yaireo/tagify'
 import 'bootstrap/scss/bootstrap.scss'
+import './index.scss'
+import '@yaireo/tagify/src/tagify.scss'
 import { GetBrowserStorage, SERVER_HOST } from '../utilities.js'
 
 export default {
@@ -256,46 +258,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-/* Customize tag color */
-/* $tag-bg: blue; */
-@import '~@yaireo/tagify/src/tagify.scss';
-</style>
 
-<style scoped>
-.header-section {
-  background: #fff;
-  border-bottom: 1px solid #d0d4d9;
-  -webkit-box-shadow: 0px 1px 1px #d0d4d9;
-  box-shadow: 0px 1px 1px #d0d4d9;
-}
-
-.header-section .container {
-  text-align: center;
-}
-.header-section .container a.logo {
-  text-decoration: none;
-  color: #25272b;
-  font-size: 2.5rem;
-  line-height: 60px;
-  font-weight: 500;
-}
-
-.header-section .container a.logo span {
-  color: #46b8da;
-}
-
-.prepare {
-  margin-top: 30px;
-}
-
-.connectivity {
-  float: right;
-}
-
-.btn-pokrex-blue {
-  color: #fff;
-  background-color: #5bc0de;
-  border-color: #46b8da;
-}
-</style>
