@@ -72,7 +72,7 @@ setTimeout(() => {
         e.stopPropagation()
         let issueTitle = document.title
         let issueTitleNode = document.querySelector(`[data-test-id="issue.views.issue-base.foundation.summary.heading"]`)
-        if (typeof issueTitleNode  !== "undefined" || issueTitleNode !== null) {
+        if (issueTitleNode) {
           issueTitle = issueTitleNode.textContent
         }
 
