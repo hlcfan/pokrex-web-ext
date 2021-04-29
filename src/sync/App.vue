@@ -133,62 +133,85 @@ export default {
         console.log("Auth info saved")
       })
 
-      for(let [link, story] of Object.entries(this.tickets)) {
+
+      let tickets = this.tickets
+      let jiraHost
+      let that = this
+
+      for(let [link, story] of Object.entries(tickets)) {
         if(this.isValidUrl(link)) {
-          const ticketPoint = isNaN(story.point) ? story.point : parseFloat(story.point)
-          const jiraHost = this.jiraHostFromUrl(link)
-          this.setSyncStatus(link, "In progress")
-
-          axios.request({
-            url: `${jiraHost}/rest/api/2/field`,
-            timeout: 5000,
-            method: "get",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            responseType: 'json',
-            auth: auth
-          }).then((response) => {
-            let pointField = response.data
-              .find(jiraField => jiraField.name.toLowerCase() === this.config.field.toLowerCase())
-              .id
-            console.log("===Update Issue")
-            let fieldsToUpdate = {}
-            fieldsToUpdate[pointField] = ticketPoint
-            axios.request({
-              url: this.issueLinkToApiUrl(link),
-              method: "put",
-              timeout: 5000,
-              headers: {
-                "Content-Type": "application/json"
-              },
-              responseType: 'json',
-              auth: auth,
-              data: {
-                fields: fieldsToUpdate
-              }
-            }).then((response) => {
-              console.log(`Updated: ${link}`)
-              this.setSyncStatus(link, "✅")
-            }).catch((error) => {
-              const {
-                data: {errorMessages, errors},
-                status,
-              } = error.response;
-
-              this.setSyncStatus(link, `⛔️ ${JSON.stringify(errors)}`)
-              Sentry.captureMessage(JSON.stringify(errors))
-              console.log("==Status:", status)
-              console.log("==Errors:", errors)
-              console.log("==ErrorsMessages:", errorMessages)
-            })
-          }).catch((error) => {
-            console.log(error)
-          })
-        } else {
-          this.setSyncStatus(link, "skipped")
+          jiraHost = this.jiraHostFromUrl(link)
+          break
         }
       }
+
+      async function getJiraPointField() {
+        const resp = await axios.request({
+          url: `${jiraHost}/rest/api/2/field`,
+          timeout: 5000,
+          method: "get",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          responseType: 'json',
+          auth: auth
+        }).then((response) => {
+          return response.data
+            .find(jiraField => jiraField.name.toLowerCase() === that.config.field.toLowerCase())
+            .id
+        })
+
+        return resp
+      }
+
+      getJiraPointField().then(
+        function(jiraPointField) {
+          if (typeof(jiraPointField ) === 'undefined') {
+            return
+          }
+
+          for(let [link, story] of Object.entries(tickets)) {
+            if(that.isValidUrl(link)) {
+              const ticketPoint = isNaN(story.point) ? story.point : parseFloat(story.point)
+              const jiraHost = that.jiraHostFromUrl(link)
+              that.setSyncStatus(link, "In progress")
+              console.log("===Start updating: ", link)
+
+              let fieldsToUpdate = {}
+              fieldsToUpdate[jiraPointField] = ticketPoint
+              axios.request({
+                url: that.issueLinkToApiUrl(link),
+                method: "put",
+                timeout: 5000,
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                responseType: 'json',
+                auth: auth,
+                data: {
+                  fields: fieldsToUpdate
+                }
+              }).then((response) => {
+                console.log(`Updated: ${link}`)
+                that.setSyncStatus(link, "✅")
+              }).catch((error) => {
+                const {
+                  data: {errorMessages, errors},
+                  status,
+                } = error.response;
+
+                that.setSyncStatus(link, `⛔️ ${JSON.stringify(errors)}`)
+                Sentry.captureMessage(JSON.stringify(errors))
+                console.log("==Status:", status)
+                console.log("==Errors:", errors)
+                console.log("==ErrorsMessages:", errorMessages)
+              })
+            } else {
+              that.setSyncStatus(link, "skipped")
+            }
+          }
+        }
+      )
     }
   },
   mounted () {
