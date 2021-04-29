@@ -138,7 +138,7 @@ export default {
       let jiraHost
       let that = this
 
-      for(let [link, story] of Object.entries(tickets)) {
+      for(let [link, _] of Object.entries(tickets)) {
         if(this.isValidUrl(link)) {
           jiraHost = this.jiraHostFromUrl(link)
           break
@@ -159,6 +159,8 @@ export default {
           return response.data
             .find(jiraField => jiraField.name.toLowerCase() === that.config.field.toLowerCase())
             .id
+        }).catch((err) => {
+          return undefined
         })
 
         return resp
@@ -166,7 +168,8 @@ export default {
 
       getJiraPointField().then(
         function(jiraPointField) {
-          if (typeof(jiraPointField ) === 'undefined') {
+          if (typeof(jiraPointField) === 'undefined') {
+            console.error("fail to fetch story point field.")
             return
           }
 
@@ -203,7 +206,7 @@ export default {
                 that.setSyncStatus(link, `⛔️ ${JSON.stringify(errors)}`)
                 Sentry.captureMessage(JSON.stringify(errors))
                 console.log("==Status:", status)
-                console.log("==Errors:", errors)
+                console.error("==Errors:", errors)
                 console.log("==ErrorsMessages:", errorMessages)
               })
             } else {
