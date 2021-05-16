@@ -30,7 +30,7 @@
     }
   ],
   "permissions": [
-    "activeTab", "tabs", "storage", "https://pokrex.com/*", "<all_urls>"
+    "activeTab", "tabs", "storage", "https://pokrex.com/*", "<all_urls>", "https://agilemana.com/*"
   ],
   "content_security_policy": "script-src 'self'; object-src 'self'"
 }
