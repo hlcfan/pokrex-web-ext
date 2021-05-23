@@ -1,4 +1,4 @@
-#pokrex-jira-assistant {
+#agilemana-jira-assistant {
   position: fixed;
   bottom: 0;
   left: 50%;
@@ -6,7 +6,7 @@
   z-index: 999;
 }
 
-.pokrex-add-to-btn-issue-page, .pokrex-open-extension-btn {
+.agilemana-add-to-btn-issue-page, .agilemana-open-extension-btn {
   border: 1px solid #5bc0de;
   border-radius: 0;
   padding: 5px 10px;
@@ -22,67 +22,67 @@
   height: 40px;
 }
 
-.pokrex-add-to-btn-issue-page:hover, .pokrex-open-extension-btn:hover {
+.agilemana-add-to-btn-issue-page:hover, .agilemana-open-extension-btn:hover {
   outline: none;
   color: #fff;
   background-color: #31b0d5;
   border-color: #269abc;
 }
 
-.pokrex-add-to-btn-issue-page:active,
-.pokrex-add-to-btn-issue-page:focus,
-.pokrex-open-extension-btn:active,
-.pokrex-open-extension-btn:focus {
+.agilemana-add-to-btn-issue-page:active,
+.agilemana-add-to-btn-issue-page:focus,
+.agilemana-open-extension-btn:active,
+.agilemana-open-extension-btn:focus {
   outline: none;
 }
 
-.pokrex-add-to-btn-issue-page:before {
+.agilemana-add-to-btn-issue-page:before {
   content: "💾";
 }
 
-.pokrex-add-to-btn-issue-page:after {
+.agilemana-add-to-btn-issue-page:after {
   padding-left: 10px;
   content: "Add to Pokrex";
 }
 
-.pokrex-add-to-btn-issue-page.saved {
+.agilemana-add-to-btn-issue-page.saved {
   color: #fff;
   background: transparent;
   color: #5bc0de;
 }
 
-.pokrex-add-to-btn-issue-page.saved:hover {
+.agilemana-add-to-btn-issue-page.saved:hover {
   background-color: #ec971f;
   border-color: #d58512;
   color: #fff;
 }
 
-.pokrex-add-to-btn-issue-page.saved:hover:before {
+.agilemana-add-to-btn-issue-page.saved:hover:before {
   content: "✂️";
 }
-.pokrex-add-to-btn-issue-page.saved:hover:after {
+.agilemana-add-to-btn-issue-page.saved:hover:after {
   padding-left: 10px;
   content: "Remove ticket";
 }
 
-.pokrex-add-to-btn-issue-page.saved:before {
+.agilemana-add-to-btn-issue-page.saved:before {
   content: "✅";
 }
 
-.pokrex-add-to-btn-issue-page.saved:after {
+.agilemana-add-to-btn-issue-page.saved:after {
   padding-left: 10px;
   content: "Ticket added";
 }
 
-.toolbar-split-left .pokrex-add-to-btn-issue-page {
+.toolbar-split-left .agilemana-add-to-btn-issue-page {
   margin-top: 0;
 }
 
-.pokrex-open-extension-btn:before {
+.agilemana-open-extension-btn:before {
   content: "🚀";
 }
 
-.pokrex-open-extension-btn:after {
+.agilemana-open-extension-btn:after {
   padding-left: 10px;
   content: "Open extension";
 }

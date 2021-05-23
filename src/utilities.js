@@ -10,14 +10,10 @@ export function GetBrowserStorage() {
 
 let host
 if (process.env.NODE_ENV === "production") {
-  let today = new Date()
-  if (today.getDate() > 23 && today.getMonth() >= 4 && today.getFullYear() >= 2021) {
-    host = "https://agilemana.com"
-  } else {
-    host = "https://pokrex.com"
-  }
+  host = "https://agilemana.com"
 } else {
-  host = "http://dev.local:3000"
+  // host = "http://dev.local:3000"
+  host = "https://agilemana.com"
 }
 
 export const SERVER_HOST = host

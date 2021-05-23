@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row header-section">
         <div class="container">
-          <a class="logo" href="https://pokrex.com" target="_blank">
+          <a class="logo" href="https://agilemana.com" target="_blank">
             Pokre<span>x</span>
           </a>
           <div class="clearfix"></div>

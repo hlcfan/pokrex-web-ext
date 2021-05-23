@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row header-section">
         <div class="container">
-          <a class="logo" href="https://pokrex.com" target="_blank">
+          <a class="logo" href="https://agilemana.com" target="_blank">
             Pokre<span>x</span>
           </a>
           <div class="clearfix"></div>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="form-group col-md-2">
                   <label>&nbsp;</label>
-                  <button type="submit" class="form-control btn btn-pokrex-blue"
+                  <button type="submit" class="form-control btn btn-agilemana-blue"
                     @click="handleSynk">Sync
                     to JIRA</button>
                 </div>
@@ -270,7 +270,7 @@ export default {
   float: right;
 }
 
-.btn-pokrex-blue {
+.btn-agilemana-blue {
   color: #fff;
   background-color: #5bc0de;
   border-color: #46b8da;

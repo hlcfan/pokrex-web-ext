@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row header-section">
         <div class="container">
-          <a class="logo" href="https://pokrex.com" target="_blank">
+          <a class="logo" href="https://agilemana.com" target="_blank">
             Pokre<span>x</span>
           </a>
           <div class="clearfix"></div>
@@ -32,7 +32,7 @@
               <span v-if="signed_in" class="connectivity">
                 ✅ Signed in
               </span>
-              <span v-else class="connectivity">🔴 <a href="https://pokrex.com/users/sign_in">Sign in required</a></span>
+              <span v-else class="connectivity">🔴 <a href="https://agilemana.com/users/sign_in">Sign in required</a></span>
             </div>
             <div class="card-body">
               <div class="row">
@@ -104,7 +104,7 @@
                     <input type="text" class="form-control" id="room-moderators"
                     placeholder="Type to add moderators">
                   </div>
-                  <button type="button" class="btn btn-pokrex-blue" @click="createRoom">Create room</button>
+                  <button type="button" class="btn btn-agilemana-blue" @click="createRoom">Create room</button>
                 </div>
               </div>
             </div>

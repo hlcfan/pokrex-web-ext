@@ -1,7 +1,7 @@
 {
-  "name": "pokrex-browser-ext",
+  "name": "agilemana-browser-ext",
   "version": "1.2.13",
-  "description": "Integrates with both JIRA cloud and JIRA server, allows to import tickets into Pokrex and sync results back to JIRA.",
+  "description": "Integrates with both JIRA cloud and JIRA server, allows to import tickets into AgileMana and sync results back to JIRA.",
   "author": "Alex S <hlcfan.yan@gmail.com>",
   "license": "GPL-2.0",
   "scripts": {

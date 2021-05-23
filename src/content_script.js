@@ -11,7 +11,7 @@ setTimeout(() => {
     if(issuePage) {
       initializeBar()
     } else {
-      let bar = document.querySelector("#pokrex-jira-assistant")
+      let bar = document.querySelector("#agilemana-jira-assistant")
       if (typeof(bar) !== 'undefined' && bar !== null) {
         bar.remove()
       }
@@ -25,7 +25,7 @@ setTimeout(() => {
           if(issuePage) {
             initializeBar()
           } else {
-            let bar = document.querySelector("#pokrex-jira-assistant")
+            let bar = document.querySelector("#agilemana-jira-assistant")
             if (typeof(bar) !== 'undefined' && bar !== null) {
               bar.remove()
             }
@@ -41,15 +41,15 @@ setTimeout(() => {
       let barFragment = document.createDocumentFragment()
 
       let bar = document.createElement("div")
-      bar.id = "pokrex-jira-assistant"
+      bar.id = "agilemana-jira-assistant"
 
       let addTicketButton = document.createElement("button")
       let issueLink = toTicketLink(document.location.href)
-      addTicketButton.className = "pokrex-add-to-btn-issue-page"
+      addTicketButton.className = "agilemana-add-to-btn-issue-page"
       bar.appendChild(addTicketButton)
 
       let openExtensionButton = document.createElement("button")
-      openExtensionButton.className = "pokrex-open-extension-btn"
+      openExtensionButton.className = "agilemana-open-extension-btn"
       openExtensionButton.addEventListener("click", function(e) {
         chrome.runtime.sendMessage({message: "openExtension"}, () => {
         })
