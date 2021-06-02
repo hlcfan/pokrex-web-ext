@@ -1,6 +1,6 @@
 {
   "name": "AgileMana JIRA Assistant",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "description": "Integrates with both JIRA cloud and JIRA server, allows to import tickets into AgileMana and sync results back to JIRA.",
   "manifest_version": 2,
   "background": {

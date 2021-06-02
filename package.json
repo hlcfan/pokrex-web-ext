@@ -1,6 +1,6 @@
 {
   "name": "agilemana-browser-ext",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "description": "Integrates with both JIRA cloud and JIRA server, allows to import tickets into AgileMana and sync results back to JIRA.",
   "author": "Alex S <hlcfan.yan@gmail.com>",
   "license": "GPL-2.0",
